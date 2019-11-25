@@ -53,7 +53,7 @@ public class YobiMove : MonoBehaviour
         {
             if (floorObject == null)
             {
-                transform.localPosition -= new Vector3(0, Time.deltaTime * 3f, 0);
+                transform.localPosition -= new Vector3(0, Time.deltaTime * 4f, 0);
             }
             else
             {
@@ -69,17 +69,20 @@ public class YobiMove : MonoBehaviour
 
     void gameover()
     {
+        jumping = false;
         yobiAnima.SetTrigger("dead");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.position.y < transform.position.y - 0.9)
+        if (other.tag == "item") return;
+        if (other.transform.position.y < transform.position.y - 0.85f)
         {
             floorObject = other.gameObject;
         }
         else if(other.transform.position.x > transform.position.x)
         {
+            GlobaleData.isGameover = true;
             transform.parent.gameObject.BroadcastMessage("gameover");
         }
     }

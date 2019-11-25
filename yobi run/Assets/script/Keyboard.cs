@@ -11,6 +11,12 @@ public class Keyboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GlobaleData.isGameover)
+        {
+            IsAttack = false;
+            IsJump = false;
+            return;
+        }
         if (Input.GetKeyDown("space"))
         {
             IsAttack = true;

@@ -19,6 +19,7 @@ public class Square : MonoBehaviour
     }
     public void beAttack()
     {
+        if (GlobaleData.isGameover) return;
         if (destroyable)
         {
             GameObject obj = ObjectPool.Instance.getGameObject(explode);
